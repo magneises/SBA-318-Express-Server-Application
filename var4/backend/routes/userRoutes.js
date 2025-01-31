@@ -1,9 +1,10 @@
 const express = require('express');
+const users = require('../data/users');
 const router = express.Router();
 
 // GET all users
 router.get('/', (req, res) => {
-    res.json({ mssg: 'Get all users' });
+    res.json(users);
 });
 
 // GET a single user
