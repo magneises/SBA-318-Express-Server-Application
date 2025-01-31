@@ -16,9 +16,23 @@ router.get('/:id', (req, res) => {
     res.json(user);
 });
 
-// POST a new user (this still just returns a message for now)
+// POST a new user
 router.post('/', (req, res) => {
-    res.json({ mssg: 'POST a new user' });
+    const { name, email, age } = req.body;
+
+    if (!name || !email || !age ) {
+        return res.status(400).json({ error: "Pleae provide name, email, and age"});
+    }
+
+    const newUser = {
+        id: users.length+1, 
+        name, 
+        email,
+        age
+    };
+
+    users.push(newUser);
+    res.status(201).json(newUser);
 });
 
 // DELETE a user (should target a specific ID)
