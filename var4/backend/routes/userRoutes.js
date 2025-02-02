@@ -43,8 +43,9 @@ router.delete('/:id', (req, res) => {
         return res.status(404).json({ error: "user not found" })
     }
 
-    const deleteUser = users.splice(userIndex, 1);
-    res.json({ message: "User deleted", user: deletedUser[0] })
+    const deletedUser = users.splice(userIndex, 1);
+    res.json({ message: "User deleted", user: deletedUser[0] });
+
 });
 
 // PATCH a user (should target a specific ID)

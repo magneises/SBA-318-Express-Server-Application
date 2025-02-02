@@ -15,9 +15,9 @@ app.engine('custom', (filePath, options, callback) => {
 
         let rendered = content;
 
-        // Replace placeholders {{key}} with actual values
+        // Update this regex to handle spaces inside {{ }}
         Object.keys(options).forEach((key) => {
-            const regex = new RegExp(`{{${key}}}`, 'g');
+            const regex = new RegExp(`{{\\s*${key}\\s*}}`, 'g'); 
             rendered = rendered.replace(regex, options[key]);
         });
 
@@ -32,7 +32,6 @@ app.set('view engine', 'custom');
 
 // Serve static files (Make sure styles.css is inside /styles)
 app.use(express.static('styles'));
-
 // Middleware
 app.use(express.json());
 
